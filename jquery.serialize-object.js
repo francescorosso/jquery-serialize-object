@@ -82,6 +82,10 @@
 
     function encode(pair) {
       switch ($('[name="' + pair.name + '"]', $form).attr("type")) {
+        case "number":
+          parsed = parseInt(pair.value);
+          if (isNaN(parsed)) { return 0 }
+          return parsed;
         case "checkbox":
           return pair.value === "on" ? true : pair.value;
         default:
